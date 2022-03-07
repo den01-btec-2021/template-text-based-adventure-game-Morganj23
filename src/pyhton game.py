@@ -8,11 +8,14 @@ def main():
     print("Hi " + player_name)
 
     lives = 3
-    print(f"You have {lives} lives remaining")
+    print(f"You have {lives} lives remaining, make them count!")
+    print("You are located in an abandoned laboratory and you must find away to get out" )
+    print("To successfully leave the building you must enter 4 other rooms in which you will enntouer puzzles which will be rquired towards the end of the game" )
+    
 
-    print("")
+    print("You notice a door ahead of you which looks to be pried open")
 
-    print("you can move North,South,East,West")
+    print("To move towards the enter North")
     direction =input("Which direction do you want to go? ")
    
     if direction == "North":
