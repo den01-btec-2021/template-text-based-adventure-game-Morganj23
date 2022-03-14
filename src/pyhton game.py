@@ -26,23 +26,19 @@ def main():
         
         if direction == "North":
             print("You went North")
-            puzzle_answer_North = input("6*6? ")
-            if puzzle_answer_North == "36":
-                print("Correct")
-                backpack.append("Blue screwdriver")
+            puzzle_solved=0
+            while (puzzle_solved == 0 and lives > 0):
+                puzzle_answer_North = input("6*6? ")
+                if puzzle_answer_North == "36":
+                    print("Correct")
+                    backpack.append("Blue screwdriver")
+                    puzzle_solved=True
+                else:
+                    print("Incorrect")
+                    lives -= 1
+                    print(f"You have {lives} lives remaining ")
 
-            else:
-                print("Incorrect")
-                lives -= 1
-                print(f"You have {lives} lives remaining ")
-               
-        
-        
-        
-        
-        
-        
-        
+
         elif direction == "South":
             print("You went South")
         
