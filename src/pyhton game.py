@@ -27,12 +27,15 @@ def main():
         
         if direction == "North":
             print("You went North")
-            puzzle_solved=0
-            while (puzzle_solved == 0 and lives > 0):
+            #flag that the puzzle is not solved by default
+            puzzle_solved=False
+            #while we still have lives and the puzzle is not solved, loop round
+            while (puzzle_solved == False and lives > 0):
                 puzzle_answer_North = input("6*6? ")
                 if puzzle_answer_North == "36":
                     print("Correct")
                     backpack.append("Blue screwdriver")
+                    #puzzle is solved set flag to true
                     puzzle_solved=True
                 else:
                     print("Incorrect")
@@ -42,13 +45,13 @@ def main():
 
         elif direction == "South":
             print("You went South")
-            puzzle_solved=0
-            while (puzzle_solved == 0 and lives > 0):
+            puzzle_solved=False
+            while (puzzle_solved == False and lives > 0):
                 puzzle_answer_North = input("What language do they speak in Brazil? ")
                 if puzzle_answer_North == "portuguese":
                     print("Correct")
                     backpack.append("Blue screwdriver")
-                    puzzle_solved=True
+                    puzzle_solved= True
                 else:
                     print("Incorrect")
                     lives -= 1
