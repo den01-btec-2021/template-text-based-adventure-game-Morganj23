@@ -1,4 +1,5 @@
 from ast import Return, While
+from pdb import Restart
 
 
 def main():
@@ -41,6 +42,19 @@ def main():
 
         elif direction == "South":
             print("You went South")
+            puzzle_solved=0
+            while (puzzle_solved == 0 and lives > 0):
+                puzzle_answer_North = input("What language do they speak in Brazil? ")
+                if puzzle_answer_North == "portuguese":
+                    print("Correct")
+                    backpack.append("Blue screwdriver")
+                    puzzle_solved=True
+                else:
+                    print("Incorrect")
+                    lives -= 1
+                    print(f"You have {lives} lives remaining ")
+
+
         
         elif direction == "East":
             print("You went East")
@@ -58,7 +72,7 @@ def main():
         
         #when lives reach 0, game ends
         if lives == 0:
-            print("You perished")  
+            print("You perished") 
             exit()   
 
 
