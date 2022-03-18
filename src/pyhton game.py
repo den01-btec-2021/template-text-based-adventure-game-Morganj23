@@ -22,48 +22,35 @@ def main():
     print("Door1 = North, Door2 = South, Door3 = East, Door4 = West")
 
     
+
+
     while True:
         direction =input("Which direction do you want to go? ")
         
         if direction == "North":
-            print("You went North")
-            #flag that the puzzle is not solved by default
-            puzzle_solved=False
-            #while we still have lives and the puzzle is not solved, loop round
-            while (puzzle_solved == False and lives > 0):
-                puzzle_answer_North = input("6*6? ")
-                if puzzle_answer_North == "36":
-                    print("Correct")
-                    backpack.append("Blue screwdriver")
-                    #puzzle is solved set flag to true
-                    puzzle_solved=True
-                else:
-                    print("Incorrect")
-                    lives -= 1
-                    print(f"You have {lives} lives remaining ")
+            room_number = "1"
+            puzzle = "6*6?"
+            puzzle_answer = "36"
+            screwdriver_colour ="Blue screwdriver"
+            in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
+
+
+
+
+
 
 
         elif direction == "South":
-            print("You went South")
-            puzzle_solved=False
-            while (puzzle_solved == False and lives > 0):
-                puzzle_answer_North = input("What language do they speak in Brazil? ")
-                if puzzle_answer_North == "portuguese":
-                    print("Correct")
-                    backpack.append("Blue screwdriver")
-                    puzzle_solved= True
-                else:
-                    print("Incorrect")
-                    lives -= 1
-                    print(f"You have {lives} lives remaining ")
+            print("You went into Room2")
+            
 
 
         
         elif direction == "East":
-            print("You went East")
+            print("You went into Room3")
         
         elif direction == "West":
-            print("You went West")
+            print("You went Room4")
 
         else:
             print("Sorry,not recognised") 
@@ -73,22 +60,40 @@ def main():
         if ("Blue screwdriver"in backpack) and ("Red screwdriver"in backpack) and ("Black screwdriver"in backpack) and ("Yellow screwdriver"in backpack):
             print("Vents open!, you got out")
         
-        #when lives reach 0, game ends
+         
+
+
+
+
+
+
+
+
+
+
+
+
+def in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour):
+    print(f"You went into {room_number} Room.")
+    #flag that the puzzle is not solved by default
+    puzzle_solved=False
+     #while we still have lives and the puzzle is not solved, loop round
+    while (puzzle_solved == False and lives > 0):
+        puzzle_answer_North = input(puzzle)
+        if puzzle_answer_North == puzzle_answer:
+            print(f"Correct. screwdriver {screwdriver_colour} collected.")
+            backpack.append(f"screwdriver {screwdriver_colour}")
+             #puzzle is solved set flag to true
+            puzzle_solved=True
+        else:
+            print(f"Incorrect")
+            lives -= 1
+            print(f"You have {lives} lives remaining. ")
+
+           #when lives reach 0, game ends
         if lives == 0:
             print("You perished") 
-            exit()   
+            exit()  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-main()
+if __name__=="__main__":
+    main()
