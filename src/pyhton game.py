@@ -37,22 +37,34 @@ def main():
 
 
 
-
-
-
-        elif direction == "South":
-            print("You went into Room2")
+            elif direction == "South":
+            room_number = "2"
+            puzzle = "What language do they speak in Brazil?"
+            puzzle_answer = "Portuguese"
+            screwdriver_colour ="Red screwdriver"
+            in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
             
 
 
         
-        elif direction == "East":
-            print("You went into Room3")
+            elif direction == "East":
+            room_number = "3"
+            puzzle = "Which former president made an appearance in Home Alone 2?"
+            puzzle_answer = "Donald Trump"
+            screwdriver_colour ="Black screwdriver"
+            in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
         
-        elif direction == "West":
-            print("You went Room4")
+       
+    
+    
+            elif direction == "West":
+            room_number = "4"
+            puzzle = "What city did the Americans use an atomic bomb on in 1945?"
+            puzzle_answer = "Hiroshima"
+            screwdriver_colour ="Yellow screwdriver"
+            in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
 
-        else:
+            else:
             print("Sorry,not recognised") 
 
 
