@@ -31,46 +31,51 @@ def main():
             room_number = "1"
             puzzle = "6*6?"
             puzzle_answer = "36"
-            screwdriver_colour ="Blue screwdriver"
+            screwdriver_colour ="Blue"
             in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
+            exit()  
 
 
 
 
-            elif direction == "South":
+        elif direction == "South":
             room_number = "2"
             puzzle = "What language do they speak in Brazil?"
             puzzle_answer = "Portuguese"
-            screwdriver_colour ="Red screwdriver"
+            screwdriver_colour ="Red"
             in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
+             
             
 
 
         
-            elif direction == "East":
+        elif direction == "East":
             room_number = "3"
             puzzle = "Which former president made an appearance in Home Alone 2?"
             puzzle_answer = "Donald Trump"
-            screwdriver_colour ="Black screwdriver"
+            screwdriver_colour ="Black"
             in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
+              
         
        
     
     
-            elif direction == "West":
+        elif direction == "West":
             room_number = "4"
             puzzle = "What city did the Americans use an atomic bomb on in 1945?"
             puzzle_answer = "Hiroshima"
-            screwdriver_colour ="Yellow screwdriver"
+            screwdriver_colour ="Yellow"
             in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
+            
 
-            else:
+        else:
             print("Sorry,not recognised") 
 
 
         #if backpack is full, open door, win game  
         if ("Blue screwdriver"in backpack) and ("Red screwdriver"in backpack) and ("Black screwdriver"in backpack) and ("Yellow screwdriver"in backpack):
             print("Vents open!, you got out")
+             
         
          
 
@@ -81,10 +86,6 @@ def main():
 
     
 
-
-
-
-
 def in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour):
     print(f"You went into {room_number} Room.")
     #flag that the puzzle is not solved by default
@@ -94,7 +95,11 @@ def in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour):
         puzzle_answer_North = input(puzzle)
         if puzzle_answer_North == puzzle_answer:
             print(f"Correct. screwdriver {screwdriver_colour} collected.")
-            backpack.append(f"screwdriver {screwdriver_colour}")
+            #checking if they have already collected this screwdriver
+            if f"screwdriver {screwdriver_colour}" not in backpack:
+                backpack.append(f"{screwdriver_colour} screwdriver")
+            else:
+                print("you already have this screwdriver")
              #puzzle is solved set flag to true
             puzzle_solved=True
         else:
@@ -106,6 +111,41 @@ def in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour):
         if lives == 0:
             print("You perished") 
             exit()  
+    return lives
+
+def addition(a,b):
+    return a + b
+
+def test_addition():
+    assert addition(3,5) == 8
+    assert addition(-1,0) == -1
+    assert addition(-1,1) == 0
+
+
+def test_in_room():
+
+    backpack = []
+    lives = 3
+    room_number = "1"
+    puzzle = "6*6"
+    puzzle_answer = "36"
+    screwdriver_colour = "Blue"
+
+   #check incorrect
+   #  assert in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour) == 2 # lives -1
+
+#check correct?
+    assert in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour) == 3 # lives =
+    assert f"{screwdriver_colour} screwdriver" in backpack #check that the key is in backpack
+
+    in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
+    assert backpack != ["Blue screwdriver","Blue screwdriver"]
+
+            
 
 if __name__=="__main__":
-    main()
+    #main()
+    #value = addition (3,2)
+    #print(value)
+    #test_addition
+    test_in_room()
