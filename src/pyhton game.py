@@ -33,7 +33,7 @@ def main():
             puzzle_answer = "36"
             screwdriver_colour ="Blue"
             in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
-            exit()  
+              
 
 
 
@@ -113,16 +113,16 @@ def in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour):
             exit()  
     return lives
 
-def addition(a,b):
+#def addition(a,b):
     return a + b
 
-def test_addition():
+#def test_addition():
     assert addition(3,5) == 8
     assert addition(-1,0) == -1
     assert addition(-1,1) == 0
 
 
-def test_in_room():
+#def test_in_room():
 
     backpack = []
     lives = 3
@@ -135,17 +135,17 @@ def test_in_room():
    #  assert in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour) == 2 # lives -1
 
 #check correct?
-    assert in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour) == 3 # lives =
-    assert f"{screwdriver_colour} screwdriver" in backpack #check that the key is in backpack
+    #assert in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour) == 3 # lives =
+    #assert f"{screwdriver_colour} screwdriver" in backpack #check that the key is in backpack
 
-    in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
-    assert backpack != ["Blue screwdriver","Blue screwdriver"]
+   # in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
+    #assert backpack != ["Blue screwdriver","Blue screwdriver"]
 
             
 
 if __name__=="__main__":
-    #main()
+    main()
     #value = addition (3,2)
     #print(value)
     #test_addition
-    test_in_room()
+    #test_in_room()
