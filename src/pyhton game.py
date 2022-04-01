@@ -1,6 +1,6 @@
 from ast import Return, While
 from pdb import Restart
-
+import time
 
 def main():
     print("Welcome to my game")
@@ -87,7 +87,12 @@ def main():
     
 
 def in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour):
-    print(f"You went into {room_number} Room.")
+    print(f"You went into {room_number} Room. Timer has began. You have 5 seconds to solve this.")
+    #start the timer
+    time_elapsed = time.time()
+    #if 5 seconds has passed,lose life
+    
+
     #flag that the puzzle is not solved by default
     puzzle_solved=False
      #while we still have lives and the puzzle is not solved, loop round
