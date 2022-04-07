@@ -1,4 +1,4 @@
-import time
+from threading import Timer
 
 def main():
     print("Welcome to my game")
@@ -75,7 +75,9 @@ def main():
             print("Vents open!, you got out")
              
         
-         
+        if lives == 0:
+            print("You perished") 
+            exit()  
 
 
 
@@ -86,10 +88,32 @@ def main():
 
 def in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour):
     print(f"You went into {room_number} Room. Timer has began. You have 5 seconds to solve this.")
-    #start the timer
-    time_elapsed = time.time()
-    #if 5 seconds has passed,lose life
     
+    # Implement input timer
+    time_limit = 3
+    timeout_container = [False]
+    lives_container = [lives]
+    t = Timer(time_limit, check_time_out, args=(lives_container,timeout_container,))
+    t.start()
+    print(f"You have {time_limit} seconds to choose the correct answer...\n")
+    puzzle_guess = input(puzzle)
+    t.cancel()
+    lives = lives_container[0]
+    timeout = timeout_container[0]
+
+    if not timeout:
+        if puzzle_guess == puzzle_answer:
+            if f"Key {screwdriver_colour}" not in backpack:
+                print(f"Correct. {screwdriver_colour} screwdriver collected.")
+                backpack.append(f"{screwdriver_colour} screwdriver ")
+            else:
+                print("You have already collected this key!")
+        else:
+            lives -= 1
+            print(f"Incorrect. You have {lives} lives remaining.")
+
+
+
 
     #flag that the puzzle is not solved by default
     puzzle_solved=False
@@ -111,28 +135,42 @@ def in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour):
             print(f"You have {lives} lives remaining. ")
 
            #when lives reach 0, game ends
-        if lives == 0:
-            print("You perished") 
-            exit()  
+         
     return lives
 
+def check_time_out(lives_container,timeout_container):
+  lives_container[0] -= 1
+  print(f"Time out! You have {lives_container[0]} lives remaining. Press Enter to continue.")
+  timeout_container[0] = True
+  return lives_container, timeout_container
+
+
+
+
+
+
+
+
+
+
+
 #def addition(a,b):
-    return a + b
+    #return a + b
 
 #def test_addition():
-    assert addition(3,5) == 8
-    assert addition(-1,0) == -1
-    assert addition(-1,1) == 0
+    #assert addition(3,5) == 8
+   # assert addition(-1,0) == -1
+   # assert addition(-1,1) == 0
 
 
 #def test_in_room():
 
-    backpack = []
-    lives = 3
-    room_number = "1"
-    puzzle = "6*6"
-    puzzle_answer = "36"
-    screwdriver_colour = "Blue"
+   # backpack = []
+    #lives = 3
+   # room_number = "1"
+   # puzzle = "6*6"
+   # puzzle_answer = "36"
+   # screwdriver_colour = "Blue"
 
    #check incorrect
    #  assert in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour) == 2 # lives -1
