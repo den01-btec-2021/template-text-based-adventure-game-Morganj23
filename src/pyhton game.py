@@ -1,5 +1,3 @@
-from ast import Return, While
-from pdb import Restart
 import time
 
 def main():
@@ -99,9 +97,9 @@ def in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour):
     while (puzzle_solved == False and lives > 0):
         puzzle_answer_North = input(puzzle)
         if puzzle_answer_North == puzzle_answer:
-            print(f"Correct. screwdriver {screwdriver_colour} collected.")
+            print(f"Correct. {screwdriver_colour} screwdriver collected.")
             #checking if they have already collected this screwdriver
-            if f"screwdriver {screwdriver_colour}" not in backpack:
+            if f"{screwdriver_colour} screwdriver" not in backpack:
                 backpack.append(f"{screwdriver_colour} screwdriver")
             else:
                 print("you already have this screwdriver")
