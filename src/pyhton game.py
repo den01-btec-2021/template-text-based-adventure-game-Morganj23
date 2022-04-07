@@ -87,7 +87,7 @@ def main():
     
 
 def in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour):
-    print(f"You went into {room_number} Room. Timer has began. You have 5 seconds to solve this.")
+    print(f"You went into {room_number} Room. Timer has began. You have 3 seconds to solve this.")
     
     # Implement input timer
     time_limit = 3
