@@ -13,12 +13,12 @@ def main():
     print(f"You have {lives} lives remaining, make them count!")
 
     backpack = [] #initialsise empty list for backpack
-    sleep()
+    sleep(2)
     print("\nYou are located in an abandoned laboratory and you must find away to get out." )
     sleep(2)
     print("To successfully leave the building you must enter 4 other rooms in which you will encounter puzzles which will be rquired towards the end of the game," )
     sleep(2)
-    print("\nYou notice a door ahead of you which looks to be pried open.")
+    print("\nYou notice a door ahead of you which looks to be prized open.")
     sleep(2)
 
     direction =input("To contiunue North press Enter")
@@ -104,7 +104,7 @@ def in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour):
      #while we still have lives and the puzzle is not solved, loop round
     while (puzzle_solved == False and lives > 0):
     # Implement input timer
-        time_limit = 10
+        time_limit = 30
         timeout_container = [False]
         lives_container = [lives]
         t = Timer(time_limit, check_time_out, args=(lives_container,timeout_container,))
