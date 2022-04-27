@@ -1,69 +1,79 @@
 from threading import Timer
+from time import sleep
 
 def main():
+
     print("Welcome to my game")
 
     player_name=input("what is your name? ")
     print("Hi " + player_name)
 
-    backpack = [] #initialsise empty list for backpack
     lives = 3
+    sleep(2)
     print(f"You have {lives} lives remaining, make them count!")
-    print("You are located in an abandoned laboratory and you must find away to get out" )
-    print("To successfully leave the building you must enter 4 other rooms in which you will encounter puzzles which will be rquired towards the end of the game" )
-    
-    print("You notice a door ahead of you which looks to be pried open")
+
+    backpack = [] #initialsise empty list for backpack
+    sleep()
+    print("\nYou are located in an abandoned laboratory and you must find away to get out." )
+    sleep(2)
+    print("To successfully leave the building you must enter 4 other rooms in which you will encounter puzzles which will be rquired towards the end of the game," )
+    sleep(2)
+    print("\nYou notice a door ahead of you which looks to be pried open.")
+    sleep(2)
 
     direction =input("To contiunue North press Enter")
     
-    print("you enter a long dark corridor,you notice there are 4 doors numbered 1,2,3 and 4")
-    print("Door1 = North, Door2 = South, Door3 = East, Door4 = West")
+    print("you enter a long dark corridor,you notice there are 4 doors numbered 1,2,3 and 4.")
+    sleep(2)
+    print("Door1 = North, Door2 = South, Door3 = East, Door4 = West.")
+    sleep(2)
+
 
     
 
 
     while True:
-        direction =input("Which direction do you want to go? ")
+        direction = input("\nWhich direction do you want to go? ").lower().strip()
         
-        if direction == "North":
+        if direction == "north":
             room_number = "1"
             puzzle = "6*6?"
             puzzle_answer = "36"
             screwdriver_colour ="Blue"
-            in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
+            lives = in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
               
 
 
 
 
-        elif direction == "South":
+        elif direction == "south":
             room_number = "2"
             puzzle = "What language do they speak in Brazil?"
-            puzzle_answer = "Portuguese"
+            puzzle_answer = "portuguese"
             screwdriver_colour ="Red"
-            in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
+            lives = in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
              
             
 
 
         
-        elif direction == "East":
+        elif direction == "east":
             room_number = "3"
             puzzle = "Which former president made an appearance in Home Alone 2?"
-            puzzle_answer = "Donald Trump"
+            puzzle_answer = "donald trump"
             screwdriver_colour ="Black"
-            in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
+            lives= in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
               
         
        
     
     
-        elif direction == "West":
+        elif direction == "west":
             room_number = "4"
             puzzle = "What city did the Americans use an atomic bomb on in 1945?"
-            puzzle_answer = "Hiroshima"
+            puzzle_answer = "hiroshima"
             screwdriver_colour ="Yellow"
-            in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
+            lives = in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour)
             
 
         else:
@@ -73,7 +83,7 @@ def main():
         #if backpack is full, open door, win game  
         if ("Blue screwdriver"in backpack) and ("Red screwdriver"in backpack) and ("Black screwdriver"in backpack) and ("Yellow screwdriver"in backpack):
             print("Vents open!, you got out")
-             
+            exit()
         
         if lives == 0:
             print("You perished") 
@@ -87,53 +97,41 @@ def main():
     
 
 def in_room(backpack,lives,room_number,puzzle,puzzle_answer,screwdriver_colour):
-    print(f"You went into {room_number} Room. Timer has began. You have 3 seconds to solve this.")
-    
+    print(f"You went into {room_number} Room.")
+     
+     #flag that the puzzle is not solved by default
+    puzzle_solved=False
+     #while we still have lives and the puzzle is not solved, loop round
+    while (puzzle_solved == False and lives > 0):
     # Implement input timer
-    time_limit = 3
-    timeout_container = [False]
-    lives_container = [lives]
-    t = Timer(time_limit, check_time_out, args=(lives_container,timeout_container,))
-    t.start()
-    print(f"You have {time_limit} seconds to choose the correct answer...\n")
-    puzzle_guess = input(puzzle)
-    t.cancel()
-    lives = lives_container[0]
-    timeout = timeout_container[0]
+        time_limit = 10
+        timeout_container = [False]
+        lives_container = [lives]
+        t = Timer(time_limit, check_time_out, args=(lives_container,timeout_container,))
+        t.start()
+        print(f"You have {time_limit} seconds to choose the correct answer...\n")
+        puzzle_guess = input(puzzle).lower().strip()
+        t.cancel()
+        lives = lives_container[0]
+        timeout = timeout_container[0]
 
-    if not timeout:
-        if puzzle_guess == puzzle_answer:
-            if f"Key {screwdriver_colour}" not in backpack:
-                print(f"Correct. {screwdriver_colour} screwdriver collected.")
-                backpack.append(f"{screwdriver_colour} screwdriver ")
+        if not timeout:
+            if puzzle_guess == puzzle_answer:
+                if f"{screwdriver_colour} screwdriver" not in backpack:
+                    print(f"Correct. {screwdriver_colour} screwdriver collected.")
+                    backpack.append(f"{screwdriver_colour} screwdriver")
+                else:
+                    print("You have already collected this key!")
+                puzzle_solved=True
             else:
-                print("You have already collected this key!")
-        else:
-            lives -= 1
-            print(f"Incorrect. You have {lives} lives remaining.")
+                lives -= 1
+                print(f"Incorrect. You have {lives} lives remaining.")
 
 
 
 
     #flag that the puzzle is not solved by default
-    puzzle_solved=False
-     #while we still have lives and the puzzle is not solved, loop round
-    while (puzzle_solved == False and lives > 0):
-        puzzle_answer_North = input(puzzle)
-        if puzzle_answer_North == puzzle_answer:
-            print(f"Correct. {screwdriver_colour} screwdriver collected.")
-            #checking if they have already collected this screwdriver
-            if f"{screwdriver_colour} screwdriver" not in backpack:
-                backpack.append(f"{screwdriver_colour} screwdriver")
-            else:
-                print("you already have this screwdriver")
-             #puzzle is solved set flag to true
-            puzzle_solved=True
-        else:
-            print(f"Incorrect")
-            lives -= 1
-            print(f"You have {lives} lives remaining. ")
-
+  
            #when lives reach 0, game ends
          
     return lives
